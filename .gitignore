@@ -1,0 +1,11 @@
+node_modules/
+dist/
+release/
+.DS_Store
+test-results/
+
+assets/icon.iconset/
+.env
+.env.*
+*.pem
+*.p12

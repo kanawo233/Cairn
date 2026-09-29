@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; font-src 'self'"><title>Cairn</title><link rel="stylesheet" href="../dist/renderer.css"></head>
+<body>
+<aside class="sidebar">
+  <div class="window-drag"></div>
+  <div class="brand"><img class="brand-icon brand-logo" src="../assets/terminal-logo.png" alt="Cairn 图标"><span>Cairn<span class="brand-sub">你的终端工作空间</span></span></div>
+  <div class="new-actions"><button id="new-terminal"><span class="plus">＋</span>新建终端<kbd>⌘ N</kbd></button><button id="new-folder" title="在指定文件夹中新建终端" aria-label="在文件夹中新建终端"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 7V5a1 1 0 0 1 1-1h5l2 3h9a1 1 0 0 1 1 1v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/><path d="M3 9h18"/></svg></button></div>
+  <div class="section-title"><span>终端</span><span id="count">0</span></div>
+  <nav id="sessions" aria-label="终端列表"></nav>
+  <div class="sidebar-bottom"><div class="local-label"><span class="dot"></span>本机工作空间<span>macOS</span></div><button id="settings-toggle"><span>⚙</span>外观设置<span class="trailing">⌘ ,</span></button></div>
+</aside>
+<main>
+  <header class="toolbar"><div class="breadcrumb"><span class="terminal-icon">›_</span><strong id="active-title">终端</strong><span class="divider">/</span><span id="active-shell">zsh</span></div><div class="toolbar-actions"><button id="rename" title="重命名当前终端">重命名</button><button id="clear" title="清空当前终端显示，⌘ K">清屏</button><span class="toolbar-divider"></span><span class="session-status-dot" id="session-state" role="img" aria-label="没有打开的终端" hidden></span><button id="close-terminal" title="关闭当前终端" aria-label="关闭当前终端">×</button></div></header>
+  <div class="workspace-info"><div><span class="workspace-dot"></span><span id="cwd">本地终端</span></div></div>
+  <div id="terminals"><div id="empty"><div class="empty-symbol">›_</div><h1>给每件事，一个终端。</h1><p>在左侧新建终端，让不同的工作各就各位。</p><button id="empty-create">＋ 新建终端</button><span>⌘ N 快速开始</span></div></div>
+  <footer><div><span class="dot" id="status-dot"></span><span id="footer-status">本地会话</span><span class="footer-separator">·</span><span id="dimensions">—</span></div><div><span>新建 <kbd>⌘ N</kbd></span><span>清屏 <kbd>⌘ K</kbd></span></div></footer>
+</main>
+<dialog id="settings"><form method="dialog"><div class="dialog-header"><h2>外观设置</h2><button aria-label="关闭设置">×</button></div><label>界面主题<select id="theme"><option value="system">跟随系统</option><option value="dark">深空灰</option><option value="light">暖白</option></select></label><label>终端字号<span><input id="font-size" type="number" min="11" max="24" value="14"> px</span></label><label>显示终端行号<input id="line-numbers-toggle" type="checkbox" checked></label><p>主题、字号和行号会自动保存，重启后恢复。选择「跟随系统」可随 Mac 深浅模式自动切换。</p></form></dialog>
+<dialog id="rename-dialog"><form id="rename-form"><h2>重命名终端</h2><input id="name-input" maxlength="40" autocomplete="off" placeholder="例如：前端开发"><div class="dialog-buttons"><button type="button" id="rename-cancel">取消</button><button type="submit" class="primary">保存</button></div></form></dialog>
+<div id="session-menu" class="session-menu" role="menu" hidden>
+  <button id="session-menu-rename" role="menuitem" tabindex="-1"><span aria-hidden="true">✎</span>重命名</button>
+  <div class="menu-separator" role="separator"></div>
+  <button id="session-menu-delete" class="menu-danger" role="menuitem" tabindex="-1"><span aria-hidden="true">×</span>删除并关闭</button>
+</div>
+<div id="toast" role="status"></div><script src="../dist/renderer.js"></script>
+</body></html>

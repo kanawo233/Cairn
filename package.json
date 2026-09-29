@@ -1,0 +1,27 @@
+{
+  "name": "harbor-terminal",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A sidebar-first terminal for macOS",
+  "main": "src/main.cjs",
+  "scripts": {
+    "build": "esbuild src/renderer.js --bundle --outfile=dist/renderer.js --loader:.css=css",
+    "start": "npm run build && electron .",
+    "postinstall": "electron-rebuild -f -w node-pty",
+    "test": "npm run build && node tests/smoke.cjs",
+    "package": "npm run build && electron-packager . Cairn --platform=darwin --arch=arm64 --out=release --overwrite --no-asar --icon=assets/terminal.icns --app-bundle-id=local.harbor.terminal --ignore='^/(release|tests|test-results|\\.git)($|/)'",
+    "dmg": "bash scripts/make-dmg.sh"
+  },
+  "dependencies": {
+    "@xterm/addon-fit": "^0.11.0",
+    "@xterm/xterm": "^6.0.0",
+    "node-pty": "^1.1.0"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.3.0",
+    "@electron/rebuild": "^4.2.0",
+    "@playwright/test": "^1.63.0",
+    "electron": "^44.4.3",
+    "esbuild": "^0.28.2"
+  }
+}
