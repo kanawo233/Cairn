@@ -1,6 +1,6 @@
 {
   "name": "harbor-terminal",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "A sidebar-first terminal for macOS",
   "main": "src/main.cjs",
@@ -9,7 +9,7 @@
     "start": "npm run build && electron .",
     "postinstall": "electron-rebuild -f -w node-pty",
     "test": "npm run build && node tests/smoke.cjs",
-    "package": "npm run build && electron-packager . Cairn --platform=darwin --arch=arm64 --out=release --overwrite --no-asar --icon=assets/terminal.icns --app-bundle-id=local.harbor.terminal --ignore='^/(release|tests|test-results|\\.git)($|/)'",
+    "package": "npm run build && electron-packager . Cairn --platform=darwin --arch=arm64 --out=release --overwrite --no-asar --icon=assets/terminal.icns --app-bundle-id=local.harbor.terminal --ignore='^/(release|tests|test-results|\\.git)($|/)' && codesign --force --deep --sign - release/Cairn-darwin-arm64/Cairn.app && codesign --verify --deep --strict release/Cairn-darwin-arm64/Cairn.app",
     "dmg": "bash scripts/make-dmg.sh"
   },
   "dependencies": {
