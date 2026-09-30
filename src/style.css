@@ -26,3 +26,65 @@
 .toolbar-actions .session-status-dot{margin:0 6px;-webkit-app-region:no-drag}
 .workspace-info{min-height:56px}
 .brand-icon.brand-logo{width:42px;height:42px;object-fit:contain;border:0;background:none;border-radius:0;flex-shrink:0}
+
+#search-bar{display:flex;align-items:center;gap:5px;margin:0 28px 8px;padding:6px;background:var(--sidebar);border:1px solid var(--border);border-radius:9px;flex-shrink:0}
+#search-bar[hidden]{display:none}
+#search-input{flex:1;min-width:60px;width:0;background:transparent;border:0;color:var(--text);padding:6px 8px;font-size:12px}
+#search-count{font-size:11px;color:var(--muted);white-space:nowrap;min-width:48px;text-align:center;font-variant-numeric:tabular-nums}
+#search-bar button{flex-shrink:0;width:28px;height:28px;color:var(--muted);font-size:16px}
+#search-bar #search-case{font-size:12px}
+#search-case[aria-pressed=true]{background:var(--active);color:var(--accent)}
+
+#cwd{font:inherit;color:inherit;text-align:left;padding:4px 6px;margin-left:-6px;min-width:0}
+#cwd:hover:not(:disabled){color:var(--text)}
+
+#restore-workspace{accent-color:var(--accent);width:16px;height:16px;cursor:pointer}
+/* Docked terminals keep their PTYs and terminal views when moved. */
+.terminal-pane{display:flex;flex-direction:column;gap:0;min-width:0;min-height:0}
+.terminal-body{display:flex;flex:1;min-height:0;min-width:0;gap:14px}
+:root[data-line-numbers=false] .terminal-body{gap:0}
+.dock-canvas{position:absolute;inset:0;min-width:0;min-height:0}
+.dock-slot{position:relative;width:100%;height:100%;min-width:0;min-height:0;overflow:hidden}
+.dock-canvas>.dock-slot,.dock-canvas>.dock-branch{width:100%;height:100%}
+.dock-branch{display:grid;min-width:0;min-height:0;height:100%;width:100%}
+.dock-branch.horizontal{grid-template-rows:minmax(0,1fr)}
+.dock-branch.vertical{grid-template-columns:minmax(0,1fr)}
+.dock-separator{background:var(--border);border:2px solid var(--main);border-radius:5px;touch-action:none}
+.horizontal>.dock-separator{cursor:col-resize}
+.vertical>.dock-separator{cursor:row-resize}
+.dock-separator:hover,.dock-separator:focus-visible{background:var(--accent);outline:none}
+.pane-header{display:none;align-items:center;gap:4px;flex-shrink:0;height:32px;background:var(--sidebar);border-bottom:1px solid var(--border);margin-bottom:8px;padding:0 5px}
+.is-split .pane-header{display:flex}
+.pane-title{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;font-size:11px;color:var(--muted);padding:6px;cursor:grab}
+.pane-header>button:not(.pane-title){color:var(--muted);width:25px;height:25px;font-size:17px}
+.focused-pane .pane-header{border-bottom-color:var(--accent)}
+.focused-pane .pane-title{color:var(--accent)}
+.is-split .line-numbers{flex-basis:4ch;padding-right:6px}
+.is-split .terminal-body{gap:8px}
+.session-row.drop-before::before,.session-row.drop-after::after{content:'';position:absolute;left:7px;right:7px;height:2px;background:var(--accent);z-index:5}
+.session-row.drop-before::before{top:-2px}.session-row.drop-after::after{bottom:-2px}
+.session-dragging .session-item{cursor:grabbing}
+.resizing-panes{user-select:none}.resizing-panes .terminal-host{pointer-events:none}
+
+.dock-canvas:empty{display:none}
+
+.dock-hint{white-space:nowrap;color:var(--muted);font-size:10px}
+@media(max-width:950px){.dock-hint{display:none}}
+
+.dock-hit{position:fixed;z-index:100;background:transparent}
+.live-dock-preview .dock-separator{visibility:hidden}
+.preview-separator{position:fixed;z-index:31;background:var(--border);border:2px solid var(--main);pointer-events:none}
+
+.dock-slot,.terminal-pane,.snap-placeholder{transform-origin:top left}
+.snap-placeholder{position:fixed;z-index:45;pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;border:1px solid #75aaf0;border-radius:12px;background:rgba(93,157,235,.19);box-shadow:inset 0 0 0 1px rgba(255,255,255,.25),0 8px 28px rgba(0,0,0,.12);backdrop-filter:blur(3px);color:#b6d6ff}
+.snap-placeholder strong{font-size:13px;font-weight:500}.snap-placeholder>span:last-child{font-size:11px;opacity:.85}
+.snap-window-icon{width:30px;height:24px;border:1.5px solid currentColor;border-radius:4px;position:relative;margin-bottom:2px}
+.snap-window-icon::before{content:'';position:absolute;left:0;right:0;top:6px;border-top:1px solid currentColor}
+:root[data-theme=light] .snap-placeholder{background:rgba(101,161,239,.17);color:#2c64a4;border-color:#6c9fdc;box-shadow:inset 0 0 0 1px rgba(255,255,255,.6),0 8px 28px rgba(43,82,125,.1)}
+
+/* Let shortcut hints wrap when the window is narrow. */
+footer{height:auto;min-height:34px;flex-wrap:wrap;gap:7px 18px;padding:8px 25px}
+footer>div:first-child{min-width:0;flex:1 0 185px}
+footer>div.footer-shortcuts{flex-wrap:wrap;justify-content:flex-end;gap:6px 16px;max-width:100%}
+.footer-shortcuts>span{white-space:nowrap}
+@media(max-width:1000px){footer>div.footer-shortcuts{justify-content:flex-start}}

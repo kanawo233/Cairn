@@ -8,12 +8,13 @@
     "build": "esbuild src/renderer.js --bundle --outfile=dist/renderer.js --loader:.css=css",
     "start": "npm run build && electron .",
     "postinstall": "electron-rebuild -f -w node-pty",
-    "test": "npm run build && node tests/smoke.cjs",
+    "test": "npm run build && node tests/smoke.cjs && node tests/search.cjs && node tests/directories.cjs && node tests/workspace.cjs && node tests/docking.cjs && node tests/pane-shortcuts.cjs",
     "package": "npm run build && electron-packager . Cairn --platform=darwin --arch=arm64 --out=release --overwrite --no-asar --icon=assets/terminal.icns --app-bundle-id=local.harbor.terminal --ignore='^/(release|tests|test-results|\\.git)($|/)' && codesign --force --deep --sign - release/Cairn-darwin-arm64/Cairn.app && codesign --verify --deep --strict release/Cairn-darwin-arm64/Cairn.app",
     "dmg": "bash scripts/make-dmg.sh"
   },
   "dependencies": {
     "@xterm/addon-fit": "^0.11.0",
+    "@xterm/addon-search": "^0.16.0",
     "@xterm/xterm": "^6.0.0",
     "node-pty": "^1.1.0"
   },
